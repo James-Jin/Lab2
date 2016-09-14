@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <resources>
     <string name="hello_message">你好！</string>
     <string name="ButtonText">点我！</string>
+    <string name="login_text">登录</string>
+    <string name="login_default">用户名</string>
+    <string name="password_text">密码</string>
+    <string name="button1_text">按钮1</string>
+    <string name="button2_text">按钮2</string>
+    <string name="switch_text">开点啥</string>
 </resources>
