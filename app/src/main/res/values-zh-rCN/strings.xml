@@ -9,4 +9,9 @@
     <string name="button1_text">按钮1</string>
     <string name="button2_text">按钮2</string>
     <string name="switch_text">开点啥</string>
+    <string name="login_button_text">登录 (*^__^*)</string>
+    <string name="dialog_message">你要回到之前的页面吗? ╮(￣▽￣)╭</string>
+    <string name="dialog_title">离开此页</string>
+    <string name="ok">好的 (￣︶￣)</string>
+    <string name="cancel">不要(＞﹏＜)</string>
 </resources>
