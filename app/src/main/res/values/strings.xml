@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab3</string>
+    <string name="app_name">Lab4</string>
     <string name="hello_message">Hello World! Yea</string>
     <string name="ButtonText">I\’m a button</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -14,7 +14,8 @@
     <string name="dialog_title">Quit this page</string>
     <string name="ok">Yes</string>
     <string name="cancel">Cancel</string>
-
+    <string name="chatButtonText">Start Chat ( • ̀ω•́ )</string>
+    <string name="send">Send</string>
 
 
 </resources>

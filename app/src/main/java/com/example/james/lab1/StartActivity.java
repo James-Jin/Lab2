@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
-    private Button startButton;
+    protected Button startButton;
+    protected Button chatButton;
     protected static final String ACTIVITY_NAME = "StartActivity";
 
     @Override
@@ -24,6 +25,15 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, ListItemsActivity.class);
                 startActivityForResult(intent, 5);
+            }
+        });
+
+        chatButton = (Button) findViewById(R.id.chatButton);
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this, ChatWindow.class));
+                Log.i(ACTIVITY_NAME, "User clicked Start Chat");
             }
         });
     }

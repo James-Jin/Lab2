@@ -16,9 +16,8 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "LoginActivity";
 
-    private Button loginButton;
-    private static final String PREFERENCE_FILE = "MyPrefsFile";
-
+    protected Button loginButton;
+    protected static final String PREFERENCE_FILE = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
