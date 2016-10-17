@@ -2,8 +2,10 @@ package com.example.james.lab1;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ public class ListItemsActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private Switch enableSomeSwitch ;
     private CheckBox checkbox;
+    private RadioButton clearChatButton;
 
 
     @Override
@@ -94,6 +98,21 @@ public class ListItemsActivity extends AppCompatActivity {
                 }
             }
         });
+        clearChatButton = (RadioButton) findViewById(R.id.radio_button);
+        clearChatButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences prefs = getSharedPreferences(LoginActivity.PREFERENCE_FILE, Context.MODE_PRIVATE);
+                int dbVersion = prefs.getInt("Database version",10);
+                dbVersion++;
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt("Database version",dbVersion);
+                editor.commit();
+                Toast toast = Toast.makeText(ListItemsActivity.this , "new version number: " + dbVersion, Toast.LENGTH_SHORT); //this is the ListActivity
+                toast.show(); 
+            }
+        });
+
     }
 
     @Override

@@ -6,7 +6,7 @@
     <string name="login_text">Login</string>
     <string name="login_default">Login name</string>
     <string name="password_text">Password</string>
-    <string name="button1_text">Button 1</string>
+    <string name="button1_text">Clear Chat History</string>
     <string name="button2_text">Button 2</string>
     <string name="switch_text">Enable Something</string>
     <string name="login_button_text">Log In</string>
@@ -16,6 +16,7 @@
     <string name="cancel">Cancel</string>
     <string name="chatButtonText">Start Chat ( • ̀ω•́ )</string>
     <string name="send">Send</string>
+    <string name="weather_btn_text">Weather Forecast</string>
 
 
 </resources>

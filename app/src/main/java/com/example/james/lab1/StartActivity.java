@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class StartActivity extends AppCompatActivity {
     protected Button startButton;
     protected Button chatButton;
+    protected Button weatherButton;
     protected static final String ACTIVITY_NAME = "StartActivity";
 
     @Override
@@ -36,6 +37,15 @@ public class StartActivity extends AppCompatActivity {
                 Log.i(ACTIVITY_NAME, "User clicked Start Chat");
             }
         });
+
+        weatherButton = (Button) findViewById(R.id.weatherButton);
+        weatherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this, WeatherForecast.class));
+            }
+        });
+
     }
 
     @Override
@@ -70,7 +80,7 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 5){
+        if(requestCode == 5 && data !=null){
             String messagePassed = data.getStringExtra("Response");
             if(messagePassed.equals("My information to share")) {
                 Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");

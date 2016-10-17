@@ -1,11 +1,13 @@
 package com.example.james.lab1;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,24 +25,47 @@ import java.util.ArrayList;
 
 public class ChatWindow extends AppCompatActivity {
     private static final String TAG = "jamesdebug";
+    private static final String ACTIVITY_NAME = "ChatWindow";
 
     protected Button sendButton;
     protected EditText chatBox;
     protected ListView chatList;
+    protected ChatDatabaseHelper dbHelper;
+    protected SQLiteDatabase db;
     protected ChatAdapter messageAdapter;
     protected ArrayList<String> messages = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState == null)
-        Log.i(TAG,"it is null" );
         setContentView(R.layout.activity_chat_window);
 
         sendButton = (Button) findViewById(R.id.sendButton);
         chatBox = (EditText) findViewById(R.id.chatbox);
         chatList = (ListView) findViewById(R.id.chatlist);
 
+        // Chat message Database
+        int dbVersion = getSharedPreferences(LoginActivity.PREFERENCE_FILE, Context.MODE_PRIVATE).getInt("Database version",10);
+        dbHelper = new ChatDatabaseHelper(ChatWindow.this, dbVersion);
+        db = dbHelper.getWritableDatabase();
+        String tableName = ChatDatabaseHelper.MESSAGE_TABLE;
+        //Cursor cursor= db.rawQuery("SELECT * FROM " + tableName,null);
+        Cursor cursor = db.query(false,ChatDatabaseHelper.MESSAGE_TABLE, null, null,null,null,null,null,null);
+        int index = cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE);
+
+
+        if(cursor.isBeforeFirst())
+            cursor.moveToNext();
+        while(!cursor.isAfterLast() ) {
+            String message = cursor.getString(index);
+            Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + message);
+            messages.add(message);
+            cursor.moveToNext();
+        }
+        Log.i(ACTIVITY_NAME, "Cursor’s  column count =" + cursor.getColumnCount() );
+
+
+        //Adapter for message listView
         messageAdapter = new ChatAdapter(this);
         chatList.setAdapter(messageAdapter);
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -51,11 +76,20 @@ public class ChatWindow extends AppCompatActivity {
                 messages.add(text);
                 messageAdapter.notifyDataSetChanged();
                 scrollMyListViewToBottom();
+
+                ContentValues cv = new ContentValues();
+                cv.put(ChatDatabaseHelper.KEY_MESSAGE, text);
+                db.insert(ChatDatabaseHelper.MESSAGE_TABLE, "--- message not avaible ---", cv);
             }
         });
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+    }
 
     //scroll the list to bottom
     //not required by Lab 4
@@ -79,13 +113,11 @@ public class ChatWindow extends AppCompatActivity {
             return messages.size();
         }
 
-        @Nullable
         @Override
         public String getItem(int position) {
             return messages.get(position);
         }
 
-        @NonNull
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = ChatWindow.this.getLayoutInflater();
