@@ -75,7 +75,7 @@ public class WeatherForecast extends AppCompatActivity {
                 myParser.setInput(inputStream, null);
 
                 int event = myParser.getEventType();
-
+                publishProgress(5);
                 while (event != XmlPullParser.END_DOCUMENT){
                     String name= myParser.getName();
                     switch (event){
@@ -135,7 +135,13 @@ public class WeatherForecast extends AppCompatActivity {
             maxTemp.setText(max);
             minTemp.setText(min);
             imageView.setImageBitmap(pic);
-            progressBar.setVisibility(View.INVISIBLE);
+//            try{
+//                Thread.sleep(1000);
+                progressBar.setVisibility(View.INVISIBLE);
+//            }catch(Exception e){
+//                e.printStackTrace();
+//            }
+
         }
 
         @Override
