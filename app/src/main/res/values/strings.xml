@@ -17,6 +17,8 @@
     <string name="chatButtonText">Start Chat ( • ̀ω•́ )</string>
     <string name="send">Send</string>
     <string name="weather_btn_text">Weather Forecast</string>
+    <string name="title_message_list">Messages</string>
+    <string name="title_message_detail">Message Detail</string>
 
 
 </resources>

@@ -3,7 +3,6 @@ package com.example.james.lab1;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +15,7 @@ import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -48,8 +45,7 @@ public class WeatherForecast extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         Log.i(TAG, "Progress bar, just initialized:" + progressBar.getProgress());
 
-        ForecastQuery forecastQuery = new ForecastQuery();
-        forecastQuery.execute();
+        new ForecastQuery().execute();
         Log.i(TAG, "Progress bar, finished:" + progressBar.getProgress());
 
     }
@@ -70,8 +66,8 @@ public class WeatherForecast extends AppCompatActivity {
             try {
                 inputStream = downloadUrl(urlString);
 
-                XmlPullParserFactory xmlFactoryObject = XmlPullParserFactory.newInstance();
-                XmlPullParser myParser = xmlFactoryObject.newPullParser();
+                XmlPullParser myParser = Xml.newPullParser();
+                myParser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
                 myParser.setInput(inputStream, null);
 
                 int event = myParser.getEventType();
@@ -84,10 +80,13 @@ public class WeatherForecast extends AppCompatActivity {
                                 Log.i(TAG, "in temperature!");
                                 cur = "Temperature: "+ myParser.getAttributeValue(null,"value");
                                 publishProgress(25);
+                                Thread.sleep(500);
                                 min = "Min: " + myParser.getAttributeValue(null, "min");
                                 publishProgress(50);
+                                Thread.sleep(500);
                                 max = "Max: " +  myParser.getAttributeValue(null, "max");
                                 publishProgress(75);
+                                Thread.sleep(500);
                             }else if(name.equals("weather")){
                                 icon = myParser.getAttributeValue(null, "icon");
 
@@ -123,6 +122,8 @@ public class WeatherForecast extends AppCompatActivity {
 
             } catch (IOException|XmlPullParserException e) {
                 e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             return null;
 
@@ -135,13 +136,7 @@ public class WeatherForecast extends AppCompatActivity {
             maxTemp.setText(max);
             minTemp.setText(min);
             imageView.setImageBitmap(pic);
-//            try{
-//                Thread.sleep(1000);
-                progressBar.setVisibility(View.INVISIBLE);
-//            }catch(Exception e){
-//                e.printStackTrace();
-//            }
-
+            progressBar.setVisibility(View.INVISIBLE);
         }
 
         @Override

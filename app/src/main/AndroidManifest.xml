@@ -5,6 +5,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -24,8 +25,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListItemsActivity" />
-        <activity android:name=".ChatWindow"></activity>
-        <activity android:name=".WeatherForecast"></activity>
+        <activity android:name=".ChatWindow" />
+        <activity android:name=".WeatherForecast" />
+        <activity
+            android:name=".MessageListActivity"
+            android:label="@string/title_message_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MessageDetailActivity"
+            android:label="@string/title_message_detail"
+            android:parentActivityName=".MessageListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.james.lab1.MessageListActivity" />
+        </activity>
     </application>
 
 </manifest>

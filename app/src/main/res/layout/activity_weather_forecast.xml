@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/weather_image"
-        android:text="15C"
+        android:text="Temperature: "
         android:id="@+id/current_temp"
         android:layout_alignParentStart="true" />
 
@@ -29,13 +29,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/current_temp"
-        android:text="30C"
+        android:text="Max: "
         android:id="@+id/max_temp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/max_temp"
-        android:text="-1C"
+        android:text="Min: "
         android:id="@+id/min_temp"/>
 
     <ProgressBar
