@@ -6,5 +6,6 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:textIsSelectable="true"
-    android:gravity="right"
+
     tools:context="com.example.james.lab1.MessageDetailFragment" />
+    <!--android:gravity="right"-->
