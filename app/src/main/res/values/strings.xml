@@ -19,6 +19,7 @@
     <string name="weather_btn_text">Weather Forecast</string>
     <string name="title_message_list">Messages</string>
     <string name="title_message_detail">Message Detail</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
 
 
 </resources>
