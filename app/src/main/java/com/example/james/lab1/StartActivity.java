@@ -12,6 +12,7 @@ public class StartActivity extends AppCompatActivity {
     protected Button startButton;
     protected Button chatButton;
     protected Button weatherButton;
+    protected Button testbarButton;
     protected static final String ACTIVITY_NAME = "StartActivity";
 
     @Override
@@ -43,6 +44,14 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, WeatherForecast.class));
+            }
+        });
+
+        testbarButton = (Button) findViewById(R.id.toolbarButton);
+        testbarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this, TestToolbar.class));
             }
         });
 

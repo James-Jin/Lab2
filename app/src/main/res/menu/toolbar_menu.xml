@@ -3,20 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_one"
         android:title="One"
-        android:icon="@drawable/A_icon"
+        android:icon="@drawable/a_icon"
         android:orderInCategory="101"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_two"
-        android:title="One"
-        android:icon="@drawable/B_icon"
+        android:title="Two"
+        android:icon="@drawable/b_icon"
         android:orderInCategory="102"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_three"
-        android:title="One"
-        android:icon="@drawable/C_icon"
+        android:title="Three"
+        android:icon="@drawable/c_icon"
         android:orderInCategory="103"
         app:showAsAction="always" />
+
+    <item android:id="@+id/action_about"
+        android:title="About"
+        android:orderInCategory="103"
+        app:showAsAction="never" />
 
 </menu>
